@@ -9,11 +9,8 @@ public class Homewok6 {
         String[] products = {"Хлеб", "Чай индийский", "Молоко"};
         int[] prices = {35, 200, 60};
 
-
         for (int i = 0; i < products.length; i++) {
-
             System.out.format("%5s%16s%10d%7s\n", i + 1 + ".", products[i], prices[i], "руб/шт");
-
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -33,6 +30,7 @@ public class Homewok6 {
         System.out.format("%15s%13s%13s%18s\n", "Наименование", "Количество", "Цена/за.ед", "Общая стоимость");
 
         for (int i = 0; i < products.length; i++) {
+
             System.out.format("%15s%13d%13d%18d\n", products[i], productCount[i], prices[i], productCount[i] * prices[i]);
             sumProducts = sumProducts + productCount[i] * prices[i];
         }
