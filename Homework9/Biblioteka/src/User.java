@@ -1,50 +1,22 @@
-public class User implements Reader, Librarian, Supplier, Administrator {
 
-    private String name;
+import roles.*;
 
-    public User(String name) {
-        this.name = name;
-    }
+public class User {
+    public static void main(String[] args) {
 
-    @Override
-    public void overdueNotification(Reader reader) {
+        Administrator administrator = new Administrator("Джон");
 
-        System.out.println("Администратор " + name + " уведомляет:" + " читатель " + ((User) reader).name + " задолжал книгу");
-    }
+        Reader reader = new Reader("Томас");
 
-    @Override
-    public void searchingBook(Reader reader) {
+        Librarian librarian = new Librarian("Лукас");
 
-        System.out.println("Администратор " + name + " ищет книгу" + " для читателя " + ((User) reader).name);
-    }
+        Supplier supplier = new Supplier("Майкл");
 
-    @Override
-    public void givingBook(Reader reader) {
+        administrator.overdueNotification(reader); // уведомление о просроченности
+        reader.takeBook(administrator); //читатель взял книги у администратора
+        librarian.bookOrdering( supplier);// библиотекарь заказал книги у поставщика
 
-        System.out.println("Администратор " + name + " выдал книгу читателю " + ((User) reader).name);
-    }
-
-    @Override
-    public void bookOrdering(Supplier supplier) {
-
-        System.out.println("Библиотекарь " + name + " заказал книги " + "у " + "поставщика " + ((User) supplier).name);
-    }
-
-
-    @Override
-    public void bookSupplying(Supplier supplier) {
-        System.out.println("Поставщик " + name + " привез книги");
-    }
-
-    @Override
-    public void takeBook(Administrator administrator) {
-        System.out.println("Читатель " + name + " взял книги у администратора " + ((User) administrator).name);
-
-    }
-
-    @Override
-    public void returnBook(Administrator administrator) {
-        System.out.println("Читатель " + name + " вернул книги администратору " + ((User) administrator).name);
-
+        supplier.takeBook(administrator); // Поставщик стал читателем и взял книги из библиотеки
+        librarian.searchingBook(reader);//библиотекарь стал администратором и ищет книгу читателю
     }
 }
